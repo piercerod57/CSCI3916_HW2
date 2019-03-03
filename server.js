@@ -70,7 +70,7 @@ router.post('/signup', function(req, res) {
         //if(db.contains(newUser)){
 			res.json({success: false, msg: 'User already Exists.', UNIQUE_KEY: process.env.UNIQUE_KEY});
 		/*}else{*/db.save(newUser);//}
-        res.json({success: true, msg: 'Successful created new user.', UNIQUE_KEY: process.env.UNIQUE_KEY, query: req.query});
+        res.json({success: true, msg: 'Successful created new user.', UNIQUE_KEY: process.env.UNIQUE_KEY, query: 'a'});
     }
 });
 
@@ -79,7 +79,7 @@ router.post('/signin', function(req, res) {
         var user = db.findOne(req.body.username);
 
         if (!user) {
-            res.status(401).send({success: false, msg: 'Authentication failed. User not found.', UNIQUE_KEY: process.env.UNIQUE_KEY, query: req.query});
+            res.status(401).send({success: false, msg: 'Authentication failed. User not found.', UNIQUE_KEY: process.env.UNIQUE_KEY, query: 'a'});
         }
         else {
             // check if password matches
@@ -89,7 +89,7 @@ router.post('/signin', function(req, res) {
                 res.json({success: true, token: 'JWT ' + token, query: req.query});
             }
             else {
-                res.status(401).send({success: false, msg: 'Authentication failed. Wrong password.', UNIQUE_KEY: process.env.UNIQUE_KEY, query: req.query});
+                res.status(401).send({success: false, msg: 'Authentication failed. Wrong password.', UNIQUE_KEY: process.env.UNIQUE_KEY, 'a'});
             }
         };
 });
