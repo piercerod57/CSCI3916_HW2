@@ -69,7 +69,7 @@ router.post('/signup', function(req, res) {
         // save the user
         if(db.contains(newUser)){
 			res.json({success: false, msg: 'User already Exists.'});
-		}else{*/db.save(newUser);}
+		}else{db.save(newUser);}
         res.json({success: true, msg: 'Successful created new user.'});
     }
 });
