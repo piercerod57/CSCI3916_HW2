@@ -20,6 +20,7 @@ module.exports = function () {
          * Save the id inside the "db".
          */
         saveMovie: function (id) {
+			console.log(id);
             this.movieList.push(id);
             return 1;
         },
