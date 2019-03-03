@@ -66,7 +66,9 @@ router.post('/signup', function(req, res) {
             password: req.body.password
         };
         // save the user
-        db.save(newUser); //no duplicate checking
+        if(db.contains(newUser){
+			res.json({success: false, msg: 'User already Exists.'});
+		}else{db.save(newUser);}
         res.json({success: true, msg: 'Successful created new user.'});
     }
 });
