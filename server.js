@@ -89,7 +89,7 @@ router.post('/signin', function(req, res) {
                 res.json({success: true, token: 'JWT ' + token, query: req.query});
             }
             else {
-                res.status(401).send({success: false, msg: 'Authentication failed. Wrong password.', UNIQUE_KEY: process.env.UNIQUE_KEY, 'a'});
+                res.status(401).send({success: false, msg: 'Authentication failed. Wrong password.', UNIQUE_KEY: process.env.UNIQUE_KEY, query: 'a'});
             }
         };
 });
