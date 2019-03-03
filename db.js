@@ -7,6 +7,7 @@ var crypto = require('crypto');
 module.exports = function () {
     return {
         userList: [],
+		movieList: [],
         /*
          * Save the user inside the "db".
          */
@@ -15,17 +16,24 @@ module.exports = function () {
             this.userList.push(user);
             return 1;
         },
+		/*
+         * Save the id inside the "db".
+         */
+        saveMovie: function (id) {
+            this.movieList.push(id);
+            return 1;
+        },
         /*
          * Retrieve a movie with a given id or return all the movies if the id is undefined.
          */
         find: function (id) {
             if (id) {
-                return this.userList.find(function (element) {
+                return this.movieList.find(function (element) {
                     return element.id === id;
                 });
             }
             else {
-                return this.userList;
+                return this.movieList;
             }
         },
         findOne: function (name) {
@@ -43,9 +51,10 @@ module.exports = function () {
          */
         remove: function (id) {
             var found = 0;
-            this.userList = this.userList.filter(function (element) {
+            this.movieList = this.movieList.filter(function (element) {
                 if (element.id === id) {
                     found = 1;
+					
                 }
                 else {
                     return element.id !== id;
