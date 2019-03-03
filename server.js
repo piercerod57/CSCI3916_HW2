@@ -144,7 +144,7 @@ router.post('/movies', function(req, res) {
 		if(movie.length > 1){
 			res.status(401).send({success: false, msg: "movie already exists", headers: responseHeader, query: responseBody, env: process.env.UNIQUE_KEY});
 		}else{
-			db.saveMovie(req.body.movieid;
+			db.saveMovie(req.body.movieid);
 			res.json({msg: "Created", headers: responseHeader, query: responseBody, env: process.env.UNIQUE_KEY});
 		}
 });
