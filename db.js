@@ -29,7 +29,7 @@ module.exports = function () {
         find: function (id) {
             if (id) {
                 return this.movieList.find(function (element) {
-                    return element.id === id;
+                    return element === id;
                 });
             }
             else {
