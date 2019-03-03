@@ -72,10 +72,12 @@ router.post('/signup', function(req, res) {
             password: req.body.password
         };
         // save the user
-        if(newUser.username == db.findOne(newUser)){
+        if(newUser == db.findOne(newUser)){
 			res.json({success: false, msg: 'User already Exists.', headers: responseHeader, query: responseBody, env: process.env.UNIQUE_KEY});
-		}else{db.save(newUser);}
-        res.json({success: true, msg: 'Successful created new user.', headers: responseHeader, query: responseBody, env: process.env.UNIQUE_KEY});
+		}else{
+			db.save(newUser);
+			res.json({success: true, msg: 'Successful created new user.', headers: responseHeader, query: responseBody, env: process.env.UNIQUE_KEY});
+		}
     }
 });
 
