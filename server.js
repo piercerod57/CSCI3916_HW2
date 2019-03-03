@@ -59,6 +59,7 @@ router.route('/postjwt')
     );
 
 router.post('/signup', function(req, res) {
+	let responseHeader = res.query;
     if (!req.body.username || !req.body.password) {
         res.json({success: false, msg: 'Please pass username and password.', UNIQUE_KEY: process.env.UNIQUE_KEY});
     } else {
@@ -70,7 +71,7 @@ router.post('/signup', function(req, res) {
         //if(db.contains(newUser)){
 			res.json({success: false, msg: 'User already Exists.', UNIQUE_KEY: process.env.UNIQUE_KEY});
 		/*}else{*/db.save(newUser);//}
-        res.json({success: true, msg: 'Successful created new user.', UNIQUE_KEY: process.env.UNIQUE_KEY, query: 'a'});
+        res.json({success: true, msg: 'Successful created new user.', UNIQUE_KEY: process.env.UNIQUE_KEY, query: responseHeader});
     }
 });
 
