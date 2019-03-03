@@ -59,7 +59,7 @@ router.route('/postjwt')
     );
 
 router.post('/signup', function(req, res) {
-	let responseHeader = res.query;
+	let responseHeader = req.body;
     if (!req.body.username || !req.body.password) {
         res.json({success: false, msg: 'Please pass username and password.', UNIQUE_KEY: process.env.UNIQUE_KEY});
     } else {
@@ -76,11 +76,11 @@ router.post('/signup', function(req, res) {
 });
 
 router.post('/signin', function(req, res) {
-
+		let responseHeader = req.body;
         var user = db.findOne(req.body.username);
 
         if (!user) {
-            res.status(401).send({success: false, msg: 'Authentication failed. User not found.', UNIQUE_KEY: process.env.UNIQUE_KEY, query: 'a'});
+            res.status(401).send({success: false, msg: 'Authentication failed. User not found.', UNIQUE_KEY: process.env.UNIQUE_KEY, query: responseHeader});
         }
         else {
             // check if password matches
@@ -90,7 +90,7 @@ router.post('/signin', function(req, res) {
                 res.json({success: true, token: 'JWT ' + token, query: req.query});
             }
             else {
-                res.status(401).send({success: false, msg: 'Authentication failed. Wrong password.', UNIQUE_KEY: process.env.UNIQUE_KEY, query: 'a'});
+                res.status(401).send({success: false, msg: 'Authentication failed. Wrong password.', UNIQUE_KEY: process.env.UNIQUE_KEY, query: responseHeader});
             }
         };
 });
