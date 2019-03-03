@@ -141,11 +141,11 @@ router.post('/movies', function(req, res) {
 		let responseHeader = req.headers;//@NOTE(P): sends back query headers
         //@TODO(P): find function
 		var movie = db.find(req.body.movieid);
-		if(!movie){
-			db.saveMovie(responseBody.id);
-			res.json({msg: "Created", headers: responseHeader, query: responseBody, env: process.env.UNIQUE_KEY});
-		}else{
+		if(movie.length > 1){
 			res.status(401).send({success: false, msg: "movie already exists", headers: responseHeader, query: responseBody, env: process.env.UNIQUE_KEY});
+		}else{
+			db.saveMovie(req.body.movieid;
+			res.json({msg: "Created", headers: responseHeader, query: responseBody, env: process.env.UNIQUE_KEY});
 		}
 });
 
