@@ -116,7 +116,7 @@ router.get('/movies', function(req, res) {
 		}else{var responseBody = null;}
 		let responseHeader = req.headers;//@NOTE(P): sends back query headers
         
-		var movie = db.find(reg.body.movieid);
+		var movie = db.find(req.body.movieid);
 		if(!movie){
 			res.status(401).send({success: false, msg: "movie not found", headers: responseHeader, query: responseBody, env: process.env.UNIQUE_KEY});
 		}else{
@@ -137,7 +137,7 @@ router.post('/movies', function(req, res) {
 		}else{var responseBody = null;}
 		let responseHeader = req.headers;//@NOTE(P): sends back query headers
         //@TODO(P): find function
-		var movie = db.find(reg.body.movieid);
+		var movie = db.find(req.body.movieid);
 		if(!movie){
 			res.status(401).send({success: false, msg: "movie already exists", headers: responseHeader, query: responseBody, env: process.env.UNIQUE_KEY});
 		}else{
@@ -159,7 +159,7 @@ router.put('/movies', function(req, res) {//requires jwtauth
 			var responseBody = req.body;//@NOTE(P): sends back query parameters
 		}else{var responseBody = null;}
 		let responseHeader = req.headers;//@NOTE(P): sends back query headers
-		var movie = db.find(reg.body.movieid);
+		var movie = db.find(req.body.movieid);
 		var user = db.findOne(req.body.username);
 
 		if (!user) {
@@ -204,7 +204,7 @@ router.delete('/movies', function(req, res) {//requires auth
 		}else{var responseBody = null;}
 		let responseHeader = req.headers;//@NOTE(P): sends back query headers
         var user = db.findOne(req.body.username);
-		var movie = db.find(reg.body.movieid);
+		var movie = db.find(req.body.movieid);
 		
 		if (!user) {
             res.status(401).send({success: false, msg: 'Authentication failed. User not found.', headers: responseHeader, query: responseBody, env: process.env.UNIQUE_KEY});
