@@ -60,8 +60,8 @@ router.route('/postjwt')
 
 router.post('/signup', function(req, res) {
 	if(req.body != null){
-		let responseBody = req.body;//@NOTE(P): sends back query parameters
-    }else{let responseBody = null;}
+		var responseBody = req.body;//@NOTE(P): sends back query parameters
+    }else{var responseBody = null;}
 	let responseHeader = req.headers;//@NOTE(P): sends back query headers
 	
 	if (!req.body.username || !req.body.password) {
@@ -81,8 +81,8 @@ router.post('/signup', function(req, res) {
 
 router.post('/signin', function(req, res) {
 		if(req.body != null){
-			let responseBody = req.body;//@NOTE(P): sends back query parameters
-		}else{let responseBody = null;}
+			var responseBody = req.body;//@NOTE(P): sends back query parameters
+		}else{var responseBody = null;}
 		let responseHeader = req.headers;//@NOTE(P): sends back query headers
         var user = db.findOne(req.body.username);
 
@@ -112,8 +112,8 @@ env: your unique key
 */
 router.get('/movies', function(req, res) {
 		if(req.body != null){
-			let responseBody = req.body;//@NOTE(P): sends back query parameters
-		}else{let responseBody = null;}
+			var responseBody = req.body;//@NOTE(P): sends back query parameters
+		}else{var responseBody = null;}
 		let responseHeader = req.headers;//@NOTE(P): sends back query headers
         
 		var movie = db.find(reg.body.movieid);
@@ -133,8 +133,8 @@ env: your unique key
 }*/
 router.post('/movies', function(req, res) {
 		if(req.body != null){
-			let responseBody = req.body;//@NOTE(P): sends back query parameters
-		}else{let responseBody = null;}
+			var responseBody = req.body;//@NOTE(P): sends back query parameters
+		}else{var responseBody = null;}
 		let responseHeader = req.headers;//@NOTE(P): sends back query headers
         //@TODO(P): find function
 		var movie = db.find(reg.body.movieid);
@@ -156,8 +156,8 @@ env: your unique key
 */
 router.put('/movies', function(req, res) {//requires jwtauth
 		if(req.body != null){
-			let responseBody = req.body;//@NOTE(P): sends back query parameters
-		}else{let responseBody = null;}
+			var responseBody = req.body;//@NOTE(P): sends back query parameters
+		}else{var responseBody = null;}
 		let responseHeader = req.headers;//@NOTE(P): sends back query headers
 		var movie = db.find(reg.body.movieid);
 		var user = db.findOne(req.body.username);
@@ -200,8 +200,8 @@ env: your unique key
 */
 router.delete('/movies', function(req, res) {//requires auth
 		if(req.body != null){
-			let responseBody = req.body;//@NOTE(P): sends back query parameters
-		}else{let responseBody = null;}
+			var responseBody = req.body;//@NOTE(P): sends back query parameters
+		}else{var responseBody = null;}
 		let responseHeader = req.headers;//@NOTE(P): sends back query headers
         var user = db.findOne(req.body.username);
 		var movie = db.find(reg.body.movieid);
