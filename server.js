@@ -120,7 +120,7 @@ router.get('/movies', function(req, res) {
 		let responseHeader = req.headers;//@NOTE(P): sends back query headers
         
 		var movie = db.find(req.body.movieid);
-		if(!movie){
+		if(movie != req.body.movieid){
 			res.status(401).send({success: false, msg: "movie not found", headers: responseHeader, query: responseBody, env: process.env.UNIQUE_KEY});
 		}else{
 			res.json({msg: "movie found", headers: responseHeader, query: responseBody, env: process.env.UNIQUE_KEY, user: movie});
@@ -139,9 +139,9 @@ router.post('/movies', function(req, res) {
 			var responseBody = req.body;//@NOTE(P): sends back query parameters
 		}else{var responseBody = null;}
 		let responseHeader = req.headers;//@NOTE(P): sends back query headers
-        //@TODO(P): find function
+        
 		var movie = db.find(req.body.movieid);
-		if(movie.length == 1){
+		if(movie == req.body.movieid){
 			res.status(401).send({success: false, msg: "movie already exists", headers: responseHeader, query: responseBody, env: process.env.UNIQUE_KEY});
 		}else{
 			db.saveMovie(req.body.movieid);
