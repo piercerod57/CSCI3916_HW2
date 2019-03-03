@@ -72,9 +72,9 @@ router.post('/signup', function(req, res) {
             password: req.body.password
         };
         // save the user
-        //if(db.contains(newUser)){
-			//res.json({success: false, msg: 'User already Exists.', headers: responseHeader, query: responseBody, env: process.env.UNIQUE_KEY});
-		/*}else{*/db.save(newUser);//}
+        if(db.findOne(newUser)){
+			res.json({success: false, msg: 'User already Exists.', headers: responseHeader, query: responseBody, env: process.env.UNIQUE_KEY});
+		}else{db.save(newUser);}
         res.json({success: true, msg: 'Successful created new user.', headers: responseHeader, query: responseBody, env: process.env.UNIQUE_KEY});
     }
 });
