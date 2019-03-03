@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d9ee19f9-cc16-478b-9ef6-92d5d45bbb3c" name="Default" comment="" />
+    <list default="true" id="d9ee19f9-cc16-478b-9ef6-92d5d45bbb3c" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -101,7 +103,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="x" value="585" />
     <option name="y" value="183" />
     <option name="width" value="1280" />
@@ -190,17 +192,16 @@
     <option name="totallyTimeSpent" value="25255000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="585" y="183" width="1280" height="777" extended-state="1" />
-    <editor active="true" />
+    <frame x="585" y="183" width="1280" height="777" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49364406" visible="true" weight="0.2536232" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4937888" visible="true" weight="0.2536232" />
       <window_info id="Structure" order="1" weight="0.25" />
-      <window_info id="npm" order="2" sideWeight="0.50635594" side_tool="true" visible="true" weight="0.2536232" />
+      <window_info id="npm" order="2" sideWeight="0.50621116" side_tool="true" visible="true" weight="0.2536232" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.45186335" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.26708075" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.26708075" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
