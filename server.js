@@ -6,7 +6,7 @@ var authController = require('./auth');
 var authJwtController = require('./auth_jwt');
 db = require('./db')(); //global hack
 var jwt = require('jsonwebtoken');
-require('dotenv').config();
+
 
 var app = express();
 app.use(bodyParser.json());
@@ -67,9 +67,9 @@ router.post('/signup', function(req, res) {
             password: req.body.password
         };
         // save the user
-        /*if(db.contains(newUser){
+        if(db.contains(newUser){
 			res.json({success: false, msg: 'User already Exists.'});
-		}else{*/db.save(newUser);//}
+		}else{*/db.save(newUser);}
         res.json({success: true, msg: 'Successful created new user.'});
     }
 });
