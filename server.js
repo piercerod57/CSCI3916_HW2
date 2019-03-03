@@ -70,7 +70,7 @@ router.post('/signup', function(req, res) {
         //if(db.contains(newUser)){
 			res.json({success: false, msg: 'User already Exists.', UNIQUE_KEY: process.env.UNIQUE_KEY});
 		/*}else{*/db.save(newUser);//}
-        res.json({success: true, msg: 'Successful created new user.', UNIQUE_KEY: process.env.UNIQUE_KEY});
+        res.json({success: true, msg: 'Successful created new user.', UNIQUE_KEY: process.env.UNIQUE_KEY, body: req.body});
     }
 });
 
@@ -79,14 +79,14 @@ router.post('/signin', function(req, res) {
         var user = db.findOne(req.body.username);
 
         if (!user) {
-            res.status(401).send({success: false, msg: 'Authentication failed. User not found.', UNIQUE_KEY: process.env.UNIQUE_KEY});
+            res.status(401).send({success: false, msg: 'Authentication failed. User not found.', UNIQUE_KEY: process.env.UNIQUE_KEY, body: req.body});
         }
         else {
             // check if password matches
             if (req.body.password == user.password)  {
                 var userToken = { id : user.id, username: user.username };
                 var token = jwt.sign(userToken, process.env.SECRET_KEY);
-                res.json({success: true, token: 'JWT ' + token});
+                res.json({success: true, token: 'JWT ' + token, body: req.body});
             }
             else {
                 res.status(401).send({success: false, msg: 'Authentication failed. Wrong password.', UNIQUE_KEY: process.env.UNIQUE_KEY, body: req.body});
