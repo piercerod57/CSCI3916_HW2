@@ -50,9 +50,17 @@ module.exports = function () {
          * Delete a movie with the given id.
          */
         remove: function (id) {
-            var index = this.movieList.findIndex(id);
-            this.movieList = this.movieList.splice(index, 1);
-            return true;
+            var found = 0;
+            this.movieList = this.movieList.filter(function (element) {
+                if (element === id) {
+                    found = 1;
+					
+                }
+                else {
+                    return element.id !== id;
+                }
+            });
+            return found;
         },
         /*
          * Update a movie with the given id
