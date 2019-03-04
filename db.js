@@ -20,7 +20,6 @@ module.exports = function () {
          * Save the id inside the "db".
          */
         saveMovie: function (id) {
-			console.log(id);
             this.movieList.push(id);
             return 1;
         },
@@ -53,9 +52,10 @@ module.exports = function () {
         remove: function (id) {
             var found = 0;
             this.movieList = this.movieList.filter(function (element) {
-                if (element.id === id) {
+                if (element === id) {
                     found = 1;
-					
+					var index = movieList.findIndex(id);
+					movieList.splice(index, 1);
                 }
                 else {
                     return element.id !== id;
