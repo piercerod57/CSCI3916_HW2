@@ -52,10 +52,9 @@ module.exports = function () {
         remove: function (id) {
             var found = 0;
             this.movieList = this.movieList.filter(function (element) {
-                if (element === id) {
+                if (element.id === id) {
                     found = 1;
-					var index = this.movieList.findIndex(id);
-					movieList.splice(index, 1);
+					
                 }
                 else {
                     return element.id !== id;
