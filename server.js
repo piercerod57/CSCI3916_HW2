@@ -217,7 +217,7 @@ router.delete('/movies', function(req, res) {//requires auth
             // check if password matches
             if (req.body.password == user.password)  {
 				//@NOTE(P): Remove movie from db
-				if(!movie){
+				if(movie != req.body.movieid){
 					res.status(401).send({success: false, msg: "Error: Can't find movie", headers: responseHeader, query: responseBody, env: process.env.UNIQUE_KEY});
 				}else{
 					var found = db.remove(req.body.movieid);
