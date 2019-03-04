@@ -54,7 +54,7 @@ module.exports = function () {
             this.movieList = this.movieList.filter(function (element) {
                 if (element === id) {
                     found = 1;
-					var index = movieList.findIndex(id);
+					var index = this.movieList.findIndex(id);
 					movieList.splice(index, 1);
                 }
                 else {
