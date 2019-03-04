@@ -1,0 +1,809 @@
+{
+	"info": {
+		"_postman_id": "e7e13bcd-4329-4055-912a-e0dd3ec84027",
+		"name": "CSCI3916_HW2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "signup",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "45c00348-d4fa-4d3c-bd9e-f15930b5737c",
+						"exec": [
+							"//var secretOrKey = pm.environment.get(\"UNIQUE_KEY\");",
+							"console.log(pm.environment.get(\"username\"));",
+							"console.log(pm.environment.get(\"password\"));",
+							"pm.sendRequest({",
+							"       url: pm.environment.get(\"signin_test\")+\"/uaa/oauth/token\",",
+							"       method: 'POST',",
+							"       header: {",
+							"           'Accept': 'application/json',",
+							"           'Content-Type': 'application/x-www-form-urlencoded',",
+							"           'Authorization': 'Basic Abcdefghijk=='",
+							"       },",
+							"       body: {",
+							"           mode: 'urlencoded',",
+							"           urlencoded: [",
+							"                {key: \"grant_type\", value: \"password\", disabled: false},",
+							"                {key: \"username\", value: pm.environment.get(\"username\"), disabled: false},",
+							"                {key: \"password\", value: pm.environment.get(\"password\"), disabled: false}",
+							"            ]",
+							"       }",
+							"    }, function (err, res){",
+							"        pm.globals.set(\"signin_test\", res.json().access_token);",
+							"    ",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d8369d93-7da5-4cda-969e-764501f3729b",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "testuser",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "cu",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://csci3916hw2phopkins.herokuapp.com/signup?",
+					"protocol": "https",
+					"host": [
+						"csci3916hw2phopkins",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"signup"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "testuser",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "cu",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "signup (fail)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "88094362-54fb-489a-97c4-b2e6b40b5d77",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "8c1760ec-6861-407c-9003-ac216a4b116b",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://csci3916hw2phopkins.herokuapp.com/signup",
+					"protocol": "https",
+					"host": [
+						"csci3916hw2phopkins",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "signin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "997b21ca-72c8-44eb-b0e4-6430e0a70de3",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1e4545bc-fe86-47a8-b87f-4b5308bcaf2c",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "testuser",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "cu",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://csci3916hw2phopkins.herokuapp.com/signin?username=testuser&password=cu",
+					"protocol": "https",
+					"host": [
+						"csci3916hw2phopkins",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"signin"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "testuser"
+						},
+						{
+							"key": "password",
+							"value": "cu"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "signin (fail)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "997b21ca-72c8-44eb-b0e4-6430e0a70de3",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1e4545bc-fe86-47a8-b87f-4b5308bcaf2c",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "fail",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "fail",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://csci3916hw2phopkins.herokuapp.com/signin?username=fail&password=fail",
+					"protocol": "https",
+					"host": [
+						"csci3916hw2phopkins",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"signin"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "fail"
+						},
+						{
+							"key": "password",
+							"value": "fail"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "signin (fail)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b2165370-4570-4a2a-8920-3e3d5b7f2d70",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "f72a13a5-9666-4254-834b-01753e205d1e",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "testuser",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "cu",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://csci3916hw2phopkins.herokuapp.com/signin",
+					"protocol": "https",
+					"host": [
+						"csci3916hw2phopkins",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "movies (post)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "63434252-5b59-4a8d-8c53-813d641bdc66",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "8f78d210-3103-4bbd-8e03-cc673c40d990",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "movieid",
+							"value": "1337",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://csci3916hw2phopkins.herokuapp.com/movies?movieid=1337",
+					"protocol": "https",
+					"host": [
+						"csci3916hw2phopkins",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"movies"
+					],
+					"query": [
+						{
+							"key": "movieid",
+							"value": "1337"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "movies (get)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c7ed27d3-d96b-4c2e-b11e-0ebcd6bcac40",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "b2e28a30-506c-42f5-8948-f55993c80286",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "testuser",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "cu",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "movieid",
+							"value": "1337",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://csci3916hw2phopkins.herokuapp.com/movies",
+					"protocol": "https",
+					"host": [
+						"csci3916hw2phopkins",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "movies (put)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0b0762cd-6282-45b5-a5a2-0300779a1650",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "2ba475b1-611a-4259-8952-08296d937745",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "testuser",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "cu",
+							"type": "text"
+						},
+						{
+							"key": "movieid",
+							"value": "1337",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://csci3916hw2phopkins.herokuapp.com/movies?username=testuser&password=cu&movieid=1337",
+					"protocol": "https",
+					"host": [
+						"csci3916hw2phopkins",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"movies"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "testuser"
+						},
+						{
+							"key": "password",
+							"value": "cu"
+						},
+						{
+							"key": "movieid",
+							"value": "1337"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "movies (delete)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "59159633-23e9-4d67-8486-8bc1947fe4fb",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "82bbeb3c-f661-4bdc-bfa3-44d31a88de36",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "testuser",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "cu",
+							"type": "text"
+						},
+						{
+							"key": "movieid",
+							"value": "1337",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://csci3916hw2phopkins.herokuapp.com/movies",
+					"protocol": "https",
+					"host": [
+						"csci3916hw2phopkins",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "movies (get) Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c7ed27d3-d96b-4c2e-b11e-0ebcd6bcac40",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "b2e28a30-506c-42f5-8948-f55993c80286",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "movieid",
+							"value": "1337",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://csci3916hw2phopkins.herokuapp.com/movies",
+					"protocol": "https",
+					"host": [
+						"csci3916hw2phopkins",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "patch test(fail)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "43802ce7-502b-4de8-a201-c3dd768525dc",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "ff0b729d-fa25-47ac-b0e1-03b6b702dee9",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://csci3916hw2phopkins.herokuapp.com/movies",
+					"protocol": "https",
+					"host": [
+						"csci3916hw2phopkins",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"movies"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "cu",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "testuser",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "4ebe63cc-526c-4ecc-9753-9c27d0d492ae",
+				"type": "text/javascript",
+				"exec": [
+					"pm.environment.set(\"UNIQUE_KEY\");"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "649498b6-a295-4dcb-b364-74084e303ef2",
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Status code is 200\", function () {",
+					"    pm.response.to.have.status(200);",
+					"});"
+				]
+			}
+		}
+	]
+}
