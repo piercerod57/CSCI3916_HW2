@@ -177,15 +177,11 @@ router.put('/movies', function(req, res) {//requires jwtauth
                 var token = jwt.sign(userToken, process.env.SECRET_KEY);
 				
 					if (req.body.password == user.password)  {
-						if(!movie){
+						if(movie != req.body.movieid){
 							res.status(401).send({success: false, msg: "Error: Can't find movie", token: 'JWT ' + token, headers: responseHeader, query: responseBody, env: process.env.UNIQUE_KEY});
 						}else{
 							var result = db.update(movie, user);
-							if(result === 1){
-								res.json({msg: "movie updated", token: 'JWT ' + token, headers: responseHeader, query: responseBody, env: process.env.UNIQUE_KEY});
-							}else if(result === 0){
-								res.status(401).send({success: false, msg: "Error: movie not updated", token: 'JWT ' + token, headers: responseHeader, query: responseBody, env: process.env.UNIQUE_KEY});
-							}
+							res.json({msg: "movie updated", token: 'JWT ' + token, headers: responseHeader, query: responseBody, env: process.env.UNIQUE_KEY});
 						}
 					}
 			}else {
